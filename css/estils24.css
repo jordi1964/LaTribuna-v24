@@ -145,26 +145,6 @@ h5 span {
   text-transform: uppercase;
 }
 
-.requadre {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  text-align: center;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
-}
-.source-esq {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  text-align: left;
-  margin: 2rem 0 0.5rem 0;
-}
-.source-centre {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  text-align: center;
-  margin: 2rem 0 0.5rem 0;
-}
-
 h6 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem; /* 20px */
@@ -196,6 +176,41 @@ p span {
   color: var(--verd);
   text-transform: uppercase;
 }
+
+/* Estils de text particulars */
+
+.requadre {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.source-esq {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  text-align: left;
+  margin: 2rem 0 0.5rem 0;
+}
+
+.source-centre {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  margin: 2rem 0 0.5rem 0;
+}
+
+.pastilla {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  padding: 0.2rem;
+  margin: 0;
+  background-color: var(--grisclar);
+  width: 100%;
+}
+
 
 /* Lists */
 
@@ -320,14 +335,13 @@ header {
 }
 
 
-
-/** Versió ordinador **/
 /* Desktop first */
 
 
-/* Barra navegació flotant en fer scroll */
+/** BARRA NAVEGACIÓ ORDINADOR **/
 /* L'organitzo com un grid amb 4 elements: centres-barra, contingut-barra, icona om i closebtn */
 /* Model Brassingtom */
+/* En fer scroll de la primera finestra, apareix la barr completa. Control x Javascript */
 div#navbar {
   position: fixed;
   display: block;
@@ -341,6 +355,23 @@ div#navbar {
   padding: 0;
   background-color: rgba(255, 255, 255, 0.9);
   transition: top 0.3s;
+}
+
+/** BARRA NAVEGACIÓ MÒBIL **/
+/* Mateixes propietats que per ordinador, però sense omm, i inicialment oculta */
+div#mobile-navbar {
+  position: fixed;
+  z-index: 2;
+  top: -2rem;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-bottom: 1px solid var(--verd);
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: top 0.3s;
+  display: none;
 }
 
 div.grid-barra-flot {
@@ -432,10 +463,6 @@ ul.bar li:hover ul li:hover {
 
 ul#bar-laptop {
   grid-area: 2 / 2 / 3 / 3;
-}
-
-ul#bar-mobil {
-  display: none;
 }
 
 
@@ -557,6 +584,7 @@ div.closebtn:hover {
 }
 
 /* &&&&& MQs 576px Reestructuració barra: "x" a dalt, simplificació textos barra (duplicació barra #bar-laptop) i eliminació símbol omm omm controlat per JS */
+/* Per simular l'efecte hover. defineixo per defecte display:none pels elements que pengen de la barra, i els faig visibles en fer "click" en l'element pare, via funció JavaScript */
 @media only screen and (max-width: 575.98px) {
   /* graella 5 col. 2 files */
   div.grid-barra-flot {
@@ -568,39 +596,41 @@ div.closebtn:hover {
     grid-area: 1 / 2 / 2 / 5;
   }
 
-  ul#bar-laptop {
+  div#navbar {
     display: none;
   }
 
-  ul.xarxes {
-    display: none;
+  div#mobile-navbar {
+    display: block;
   }
 
   ul#bar-mobil {
     padding: 0;
-    display: block;
     grid-area: 2 / 1 / 3 / 6;
   }
   ul#bar-mobil li {
-    padding: 0.2rem 0.6rem;
+    padding: 0.2rem 0.4rem;
     font-weight: 400;
   }
-  ul#bar-mobil li:hover ul {
+
+  /* Simulació efecte hover amb JavaScript... */
+  ul#bar-mobil li ul {
     margin-top: 0.2rem;
+    width: 8rem;
   }
   ul#bar-mobil li#xarxes-mobil {
     position: relative;
   }
-  ul#bar-mobil li#xarxes-mobil:hover ul {
+  ul#bar-mobil li#xarxes-mobil ul {
     position: absolute;
     right: 0;
     width: 12rem;
     margin-left: auto;
   }
-  ul#bar-mobil li#xarxes-mobil:hover ul li {
+  ul#bar-mobil li#xarxes-mobil ul li {
     text-transform: none;
   }
-  ul#bar-mobil li#xarxes-mobil:hover ul li span {
+  ul#bar-mobil li#xarxes-mobil ul li span {
     padding-left: 0.625rem;
   }
 
@@ -1008,19 +1038,75 @@ div#img-iyengar-4 img {
   height: auto;
 }
 
+div.img-iyengar-mob {
+  display: none;
+  position: relative;
+}
+
+/* Icona ampliar "+" per mòbil */
+/* Assigno classe genèrica pel símbol, però animacions individualitzades via id, sinó, només en rutlla la primera */
+div.ampliar {
+  z-index: 1;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid var(--verd);
+  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+  animation: mymove 5s infinite;
+}
+div.ampliar p {
+  color: var(--verd);
+  font-size: 30px!important;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  padding: 3px 0 0 0;
+}
+/* Animació */
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  0%   {background-color: rgba(255, 255, 255, 1);}
+  50%  {background-color: var(--verdmoltclar);}
+  100% {background-color: rgba(255, 255, 255, 1);}
+}
+@keyframes mymove {
+  0%   {background-color: rgba(255, 255, 255, 1);}
+  50%  {background-color: var(--verdmoltclar);}
+  100% {background-color: rgba(255, 255, 255, 1);}
+}
+
+div.img-iyengar-mob img {
+  max-width: 100%;
+  height: auto;
+}
+div.img-iyengar-mob a {
+  text-decoration: none;
+}
+
+
 /* &&&&& MQs 576px B. Section IOGA IYENGAR --> Passem text a una columna */
 @media only screen and (max-width: 575.98px) {
   div.presentacio {
     grid-area: 1 / 1 / 2 / 3;
   }
   div#img-iyengar-1,
+  div#img-iyengar-2,
+  div#img-iyengar-3,
   div#img-iyengar-4 {
     display: none;
   }
-  div#img-iyengar-2 {
+
+  div.img-iyengar-mob {
+    display: block;
+  }
+  div#img-iyengar-mob-1 {
     grid-area: 2 / 1 / 3 / 2;
   }
-  div#img-iyengar-3 {
+  div#img-iyengar-mob-2 {
     grid-area: 2 / 2 / 3 / 3;
   }
   div.pretenem {
@@ -1117,7 +1203,7 @@ div#img-centres-5 {
   }
 }
 
-/* &&&&& MQs 576px B. Section IOGA IYENGAR --> Passem text a una columna */
+/* &&&&& MQs 576px B. Section IOGA IYENGAR --> Passem text a una columna i canviem d'imatges */
 @media only screen and (max-width: 575.98px) {
   div#img-centres-1,
   div#img-centres-2,
@@ -1129,6 +1215,7 @@ div#img-centres-5 {
     grid-area: 1 / 1 / 2 / 3;
   }
   div#img-centres-5 {
+    display: block;
     grid-area: 2 / 1 / 3 / 3;
   }
   div#img-centres-5 img{
@@ -1334,6 +1421,12 @@ div.equip-img {
   position: relative;
 }
 
+/* Oculto elements x formats mòbil */
+div.equip-img div.ampliar,
+div.equip-img h6 {
+  display: none;
+}
+
 div.equip-logo {
   grid-area: 1 / 2 / 2 / 3;
 }
@@ -1381,6 +1474,24 @@ div.equip-img:hover h5 {
   }
   div.equip-logo {
     grid-area: 3 / 2 / 4 / 3; /* logo a baix de tot */
+  }
+}
+
+/* &&&&& MQs 576px EQUIP --> Canvi efecte hover x animació "ampliar", poso imatges d'entrada a color */
+
+@media only screen and (max-width: 575.98px) {
+  div.equip-img img {
+    -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+    filter: grayscale(0);
+  }
+
+  div.equip-img h5 {
+    display: none;
+  }
+
+  div.equip-img div.ampliar,
+  div.equip-img h6 {
+    display: block;
   }
 }
 
@@ -1903,21 +2014,14 @@ section#faqs div.reticula {
 }
 
 /* &&&&& MQs 576px FAQs --> 1 SOLA COLUMNA */
+/* Elimino llistat introductori .llistat-FAQs , per evitar taps complicats no necessaris */
 @media only screen and (max-width: 575.98px) {
   div.grid-faqs {
     grid-template-columns: 1fr;
   }
-  div#img-faqs-1 {
-    grid-area: 3 / 1 / 4 / 2;
+  div.llistat-FAQs {
+    display: none;
   }
-  div.FAQs-A {
-    grid-area: 4 / 1 / 5 / 2;
-  }
-
-  div.FAQs-B {
-    grid-area: 5 / 1 / 6 / 2;
-  }
-
   div#img-faqs-2,
   div#img-faqs-3,
   div#img-faqs-4,
@@ -1925,17 +2029,33 @@ section#faqs div.reticula {
   div#img-faqs-6 {
     display: none;
   }
+
+  div.FAQs-A {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  div.FAQs-B {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
   div.FAQs-C {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
+  div#img-faqs-1 {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+
+  div.FAQs-D {
+    grid-area: 5 / 1 / 6 / 2;
+  }
+
+  div.FAQs-E {
     grid-area: 6 / 1 / 7 / 2;
   }
-  div.FAQs-D {
-    grid-area: 8 / 1 / 9 / 2;
-  }
-  div.FAQs-E {
-    grid-area: 9 / 1 / 10 / 2;
-  }
+
   div.FAQs-F {
-    grid-area: 10 / 1 / 11 / 2;
+    grid-area: 7 / 1 / 8 / 2;
   }
 }
 
@@ -2035,6 +2155,15 @@ div.grid-receptari {
   grid-gap: 1.5rem;
 }
 
+div.plats-receptari {
+  position: relative; /* Sinó icona ampliar no rutlla */
+}
+
+/* Icona ampliar format mòbil, oculta */
+div.plats-receptari div.ampliar {
+  display: none;
+}
+
 div.plats-receptari img {
   max-width: 100%;
   height: auto;
@@ -2078,6 +2207,9 @@ div.nom-plat p {
 @media only screen and (max-width: 575.98px) {
   div.grid-receptari {
     grid-template-columns: 1fr;
+  }
+  div.plats-receptari div.ampliar {
+    display: block;
   }
 }
 
