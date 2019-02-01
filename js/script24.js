@@ -13,6 +13,7 @@ var height = window.outerHeight;
 function scrollFunction() {
   if (document.body.scrollTop > height || document.documentElement.scrollTop > height) {
     document.getElementById("navbar").style.top = "0";
+    document.getElementById("mobile-navbar").style.top = "0";
     /* Omm visible només per >576px */
     if (window.matchMedia("(min-width: 576px)").matches) {
       document.getElementById('om').style.display = "block";
@@ -23,15 +24,24 @@ function scrollFunction() {
 
 
 /** Botó-Imago flotant lateral dret **/
-/* En fer click funciona com a interruptor mostrant i amagant barra flotant */
+/* En fer click funciona com a interruptor mostrant i amagant barra flotant, que discrimina segons amplada de finestra */
 
 function openNav() {
-  document.getElementById('navbar').style.display = "block";
   document.getElementById('logo-menu').style.display = "none";
+  if (window.matchMedia("(min-width: 576px)").matches) {
+    document.getElementById('navbar').style.display = "block";
+  } else {
+    document.getElementById('mobile-navbar').style.display = "block";
+  }
 }
 
 function closeNav() {
   document.getElementById('navbar').style.display = "none";
+  document.getElementById('logo-menu').style.display = "block";
+}
+
+function closeMobileNav() {
+  document.getElementById('mobile-navbar').style.display = "none";
   document.getElementById('logo-menu').style.display = "block";
 }
 
@@ -88,4 +98,29 @@ function openPlat01() {
 
 function closePlat01() {
   document.getElementById('plat01-text').style.display = "none";
+}
+
+
+/** BARRA NAVEGACIÓ TOUCH-FRIENDLY **/
+
+/* En obrir cada nou element, hem d'assegurar-nos de tancar tots els que hi pogués haver oberts */
+function openCentres() {
+  document.getElementById('ul-centres').style.display = "block";
+}
+function closeCentres() {
+  document.getElementById('ul-centres').style.display = "none";
+}
+
+function openInfo() {
+  document.getElementById('ul-info').style.display = "block";
+}
+function closeInfo() {
+  document.getElementById('ul-info').style.display = "none";
+}
+
+function openXarxes() {
+  document.getElementById('ul-xarxes').style.display = "block";
+}
+function closeXarxes() {
+  document.getElementById('ul-xarxes').style.display = "none";
 }
