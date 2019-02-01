@@ -10,7 +10,7 @@
 <!-- Millora: barra navegació retràctil, botó menú millorat, reenquadre ommmm -->
 <!-- Millora: incorporació dels 4 videos de Youtube --><!-- engrandiment botó menú -->
 <!-- Millora: responsive -->
-<!-- Millora: incorporació esdeveniments dispositius tàctils -->
+<!-- Millora: incorporació esdeveniments dispositius tàctils: dropdown dissenyat per Kate Morley -->
 
 
 <!doctype html>
@@ -30,6 +30,7 @@
   <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
   <script src="js/script24.js"></script>
+  <script src="js/Dropdown.src.js"></script>
 
 </head>
 
@@ -47,8 +48,8 @@
           </div>
 
           <ul id="bar-laptop" class="bar">
-            <li><a href="#iyengar" onmouseup="closeNav()">Ioga Iyengar</a></li>
-            <li><a href="#centres" onmouseup="closeNav()">Els centres</a>
+            <li><a href="#iyengar" onclick="closeNav()">Ioga Iyengar</a></li>
+            <li><a href="#centres" onclick="closeNav()">Els centres</a>
               <ul>
                 <li><a href="#pou" onclick="closeNav()">EL POU DE LLUM - Figueres</a></li>
                 <li><a href="#tribuna" onclick="closeNav()">LA TRIBUNA - Olot</a></li>
@@ -93,42 +94,6 @@
             </li>
           </ul><!-- .xarxes -->
 
-          <ul id="bar-mobil" class="bar">
-            <li><a href="#iyengar" onclick="closeNav()">Iyengar</a></li>
-            <li><a href="#centres" onclick="closeNav()">Centres</a>
-              <ul>
-                <li><a href="#pou" onclick="closeNav()">EL POU DE LLUM - Figueres</a></li>
-                <li><a href="#tribuna" onclick="closeNav()">LA TRIBUNA - Olot</a></li>
-              </ul>
-            </li>
-            <li><a href="#equip" onclick="closeNav()">Equip</a></li>
-            <li><a href="#info" onclick="closeNav()">Info</a>
-              <ul>
-                <li><a href="#calendari" onclick="closeNav()">Calendari</a></li>
-                <li><a href="#horaris" onclick="closeNav()">Horaris</a></li>
-                <li><a href="#tarifes" onclick="closeNav()">Tarifes</a></li>
-                <li><a href="#consells" onclick="closeNav()">Consells pràctics</a></li>
-                <li><a href="#material" onclick="closeNav()">Material</a></li>
-                <li><a href="#bibliografia" onclick="closeNav()">Bibliografia</a></li>
-              </ul>
-            </li>
-            <li><a href="#faqs" onclick="closeNav()">FAQs</a></li>
-            <li><a href="#receptes" onclick="closeNav()">Receptes</a></li>
-            <li id="xarxes-mobil"><a href="#" onclick="closeNav()">Xarxes</a>
-              <ul>
-                <li><a href="https://ca-es.facebook.com/iogaelpou" target="_blank"><i class="fab fa-facebook-f"></i><span>El Pou de Llum</span></a></li>
-                <li><a href="https://ca-es.facebook.com/iogalatribuna" target="_blank"><i class="fab fa-facebook-f"></i><span>La Tribuna</span></a></li>
-                <li><a href="https://www.instagram.com/iogaelpou.figueres/" target="_blank"><i class="fab fa-instagram"></i><span>El Pou de Llum</span></a></li>
-                <li><a href="https://www.instagram.com/iogalatribuna.olot/" target="_blank"><i class="fab fa-instagram"></i><span>La Tribuna</span></a></li>
-                <li><a href="https://www.youtube.com/watch?v=tBMtbuSS4BI" target="_blank"><i class="fab fa-youtube"></i><span>Ioga per a nens</span></a></li>
-                <li><a href="https://www.youtube.com/watch?v=HldhHHzOlmE" target="_blank"><i class="fab fa-youtube"></i><span>Ioga El Pou de Llum</span></a></li>
-                <li><a href="https://www.youtube.com/watch?v=nutCaTf4A1k/" target="_blank"><i class="fab fa-youtube"></i><span>Ioga La Tribuna</span></a></li>
-                <li><a href="https://www.youtube.com/watch?v=qZ78g5w9FIY" target="_blank"><i class="fab fa-youtube"></i><span>Ioga La Tribuna</span></a></li>
-              </ul>
-            </li>
-          </ul><!-- .bar-mobil -->
-
-
           <div id="om">
             <!-- fico la imatge en css com a background-image, per evitar problemes de tamany, vull que s'ajusti automàticament a l'espai disponible -->
           </div>
@@ -138,7 +103,59 @@
           </div>
 
         </div><!-- .grid-barra-flot -->
-      </div><!-- .barra-flotant (barra navegació FLOTANT)-->
+      </div><!-- #navbar (barra navegació FLOTANT)-->
+
+      <!-- Barra navegació superior FLOTANT x mòbil -->
+      <div id="mobile-navbar">
+        <div class="grid-barra-flot">
+
+          <div class="centres-barra">
+            <p>Centres de Ioga Iyengar · <span>El Pou de Llum · La Tribuna</span></p>
+          </div>
+
+          <ul id="bar-mobil" class="bar dropdown">
+            <li><a href="#iyengar" onclick="closeMobileNav()">Iyengar</a></li>
+            <li><a href="#">Centres<i class="fas fa-caret-down"></i></a>
+              <ul id="ul-centres">
+                <li><a href="#pou" onclick="closeMobileNav()">EL POU DE LLUM - Figueres</a></li>
+                <li><a href="#tribuna" onclick="closeMobileNav()">LA TRIBUNA - Olot</a></li>
+              </ul>
+            </li>
+            <li><a href="#equip" onclick="closeMobileNav()">Equip</a></li>
+            <li><a href="#">Info<i class="fas fa-caret-down"></i></a>
+              <ul id="ul-info">
+                <li><a href="#calendari" onclick="closeMobileNav()">Calendari</a></li>
+                <li><a href="#horaris" onclick="closeMobileNav()">Horaris</a></li>
+                <li><a href="#tarifes" onclick="closeMobileNav()">Tarifes</a></li>
+                <li><a href="#consells" onclick="closeMobileNav()">Consells pràctics</a></li>
+                <li><a href="#material" onclick="closeMobileNav()">Material</a></li>
+                <li><a href="#bibliografia" onclick="closeMobileNav()">Bibliografia</a></li>
+              </ul>
+            </li>
+            <li><a href="#faqs" onclick="closeMobileNav()">FAQs</a></li>
+            <li><a href="#receptes" onclick="closeMobileNav()">Receptes</a></li>
+            <li id="xarxes-mobil"><a href="#">Xarxes<i class="fas fa-caret-down"></i></a>
+              <ul id="ul-xarxes">
+                <li><a href="https://ca-es.facebook.com/iogaelpou" target="_blank" onclick="closeMobileNav()"><i class="fab fa-facebook-f"></i><span>El Pou de Llum</span></a></li>
+                <li><a href="https://ca-es.facebook.com/iogalatribuna" target="_blank" onclick="closeMobileNav()"><i class="fab fa-facebook-f"></i><span>La Tribuna</span></a></li>
+                <li><a href="https://www.instagram.com/iogaelpou.figueres/" target="_blank" onclick="closeMobileNav()"><i class="fab fa-instagram"></i><span>El Pou de Llum</span></a></li>
+                <li><a href="https://www.instagram.com/iogalatribuna.olot/" target="_blank" onclick="closeMobileNav()"><i class="fab fa-instagram"></i><span>La Tribuna</span></a></li>
+                <li><a href="https://www.youtube.com/watch?v=tBMtbuSS4BI" target="_blank" onclick="closeMobileNav()"><i class="fab fa-youtube"></i><span>Ioga per a nens</span></a></li>
+                <li><a href="https://www.youtube.com/watch?v=HldhHHzOlmE" target="_blank" onclick="closeMobileNav()"><i class="fab fa-youtube"></i><span>Ioga El Pou de Llum</span></a></li>
+                <li><a href="https://www.youtube.com/watch?v=nutCaTf4A1k/" target="_blank" onclick="closeMobileNav()"><i class="fab fa-youtube"></i><span>Ioga La Tribuna</span></a></li>
+                <li><a href="https://www.youtube.com/watch?v=qZ78g5w9FIY" target="_blank" onclick="closeMobileNav()"><i class="fab fa-youtube"></i><span>Ioga La Tribuna</span></a></li>
+              </ul>
+            </li>
+          </ul><!-- .bar-mobil -->
+
+          <div class="closebtn">
+            <span onclick="closeNav()">&times;</span>
+          </div>
+
+        </div><!-- .grid-barra-flot -->
+      </div><!-- #mobile-navbar -->
+
+
 
       <!-- Botó-Imago flotant lateral dret -->
       <div id="logo-menu" class="menu" onclick="openNav()">
@@ -230,23 +247,47 @@
         <p>Aprendre a respirar amb relaxament tot fent un treball intens per aconseguir equilibrar a la ment ajudant-la a calmar-se i asserenar-se arribant tal com definia Patañjali, al control de les seves fluctuacions.</p>
         <p>I finalment equilibri de l'esperit aconseguint una pau interior per viure en harmonia amb nosaltres mateixos i amb el nostre entorn.</p>
       </div><!-- pretenem -->
+
       <div id="img-iyengar-1">
         <a href="https://aeyi.org/yoga-iyengar/el-maestro-bks-iyengar/" target="_blank">
           <img src="img/Iyengar-1-sencer.jpg" alt="BKS Iyengar">
           <h5 class="requadre">B.K.S. IYENGAR</h5>
         </a>
       </div>
+
       <div id="img-iyengar-2">
         <a href="https://aeyi.org/yoga-iyengar/el-maestro-bks-iyengar/" target="_blank">
           <img src="img/iyengar-2-sq.jpg" alt="BKS Iyengar">
           <h5 class="requadre">B.K.S. IYENGAR</h5>
         </a>
       </div>
+
       <div id="img-iyengar-3">
         <img src="img/ElPou-Virabadasana1.jpg" alt="BKS Iyengar">
       </div>
+
       <div id="img-iyengar-4">
         <img src="img/Tribuna-Sarvangasana.jpg" alt="BKS Iyengar">
+      </div>
+
+      <div id="img-iyengar-mob-1" class="img-iyengar-mob">
+        <a href="https://aeyi.org/yoga-iyengar/el-maestro-bks-iyengar/" target="_blank">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
+          <img src="img/iyengar-2-sq.jpg" alt="BKS Iyengar">
+          <h6 class="pastilla">BKS Iyengar</h6>
+        </a>
+      </div>
+
+      <div id="img-iyengar-mob-2" class="img-iyengar-mob">
+        <a href="https://aeyi.org/yoga-iyengar/el-maestro-bks-iyengar/" target="_blank">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
+          <img src="img/Iyengar-1.jpg" alt="BKS Iyengar">
+          <h6 class="pastilla">BKS Iyengar</h6>
+        </a>
       </div>
     </div><!-- grid-container -->
   </section><!-- #iyengar -->
@@ -434,36 +475,56 @@
     <div class="reticula grid-equip">
       <div id="enric" class="equip" onclick="openEquip1(); closeNav()">
         <div class="equip-img">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img src="img/Foto-Enric.png" alt="Enric Sala">
           <h5 class="requadre">ENRIC SALA i SALIP <!--&plus;--></h5>
+          <h6 class="pastilla">ENRIC SALA</h6>
         </div>
       </div><!-- #enric -->
 
       <div id="nuria" class="equip" onclick="openEquip2(); closeNav()">
         <div class="equip-img">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img src="img/Foto-Nuria.png" alt="Núria Castelló">
           <h5 class="requadre">NÚRIA CASTELLÓ i COLOMER</h5>
+          <h6 class="pastilla">NÚRIA CASTELLÓ</h6>
         </div>
       </div><!-- #nuria -->
 
       <div id="marc" class="equip" onclick="openEquip3(); closeNav()">
         <div class="equip-img">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img src="img/Foto-Marc.png" alt="Marc Sala">
           <h5 class="requadre">MARC SALA i GOU</h5>
+          <h6 class="pastilla">MARC SALA</h6>
         </div>
       </div><!-- #marc -->
 
       <div id="remei" class="equip" onclick="openEquip4(); closeNav()">
         <div class="equip-img">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img src="img/Foto-Remei.png" alt="Remei Gou">
           <h5 class="requadre">REMEI GOU i FONT</h5>
+          <h6 class="pastilla">REMEI GOU</h6>
         </div>
       </div><!-- #remei -->
 
       <div id="pere" class="equip" onclick="openEquip5(); closeNav()">
         <div class="equip-img">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img src="img/Foto-Pere.jpg" alt="Pere">
           <h5 class="requadre">PERE</h5>
+          <h6 class="pastilla">PERE</h6>
         </div>
       </div><!-- #pere -->
 
@@ -1608,7 +1669,7 @@
       <!-- Aprofito idèntica estructura que per #material -->
       <div class="grid-faqs">
 
-        <div>
+        <div class="llistat-FAQs">
           <h4>A. Tipus de ioga</h4>
           <ol>
             <li><a href="#FAQs-A-1" onclick="closeNav()">Hi ha diversos tipus de ioga?</a></li>
@@ -1631,7 +1692,7 @@
           </ol>
         </div>
 
-        <div>
+        <div class="llistat-FAQs">
           <h4>D. Sobre la pràctica</h4>
           <ol>
             <li><a href="#FAQs-D-1" onclick="closeNav()">Qualsevol persona pot fer-ne?</a></li>
@@ -1872,6 +1933,9 @@
     <div id="receptari-entrants" class="receptari">
       <div class="grid-receptari">
         <div id="plat01" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-01-Dhokla-400x400.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Lasanya de carbassa, gorgonzola i salsa d'anet</h5>
@@ -1882,6 +1946,9 @@
         </div><!-- #plat01 -->
 
         <div id="plat02" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-02-Formatge-cabra-400x400.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Amanida de formatge de cabra i julivert</h5>
@@ -1892,6 +1959,9 @@
         </div>
 
         <div id="plat03" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-03-Buddha-bowl-400x400.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Cuscus amb escarola</h5>
@@ -1902,6 +1972,9 @@
         </div>
 
         <div id="plat04" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-04-Bowl-rice-vegetables.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Arròs de verdures estil pakistaní</h5>
@@ -1922,6 +1995,9 @@
       <div class="grid-receptari">
 
         <div id="plat05" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-05-Espaguetis-veganos.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Arròs de verdures estil pakistaní</h5>
@@ -1932,6 +2008,9 @@
         </div>
 
         <div id="plat06" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-06-Espaguetis-vegetarians.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Amanida de formatge de cabra i julivert</h5>
@@ -1942,6 +2021,9 @@
         </div>
 
         <div id="plat07" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-07-Amanida-cogombre.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Lasanya de carbassa, gorgonzola i salsa d'anet</h5>
@@ -1952,6 +2034,9 @@
         </div>
 
         <div id="plat08" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-08-Espaguetis-xampis.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Arròs de verdures estil pakistaní</h5>
@@ -1962,6 +2047,9 @@
         </div>
 
         <div id="plat09" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-09-Arros-groc.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Amanida de formatge de cabra i julivert</h5>
@@ -1981,6 +2069,9 @@
       <div class="grid-receptari">
 
         <div id="plat10" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-10-Arros-curri.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Amanida de formatge de cabra i julivert</h5>
@@ -1991,6 +2082,9 @@
         </div>
 
         <div id="plat11" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-03-Buddha-bowl-400x400.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Arròs de verdures estil pakistaní</h5>
@@ -2001,6 +2095,9 @@
         </div>
 
         <div id="plat12" class="plats-receptari" onclick="openPlat01(); closeNav()">
+          <div class="ampliar">
+            <p>&#43;</p>
+          </div>
           <img img src="img/Plat-04-Bowl-rice-vegetables.png" alt="Logotip">
           <div class="nom-plat">
             <h5 class="requadre">Amanida de formatge de cabra i julivert</h5>
